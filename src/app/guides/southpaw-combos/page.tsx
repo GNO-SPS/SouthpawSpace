@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function SouthpawCombosPage() {
@@ -26,7 +25,7 @@ export default function SouthpawCombosPage() {
       </p>
 
       <p className="text-zinc-400 mb-2">
-        In this guide, you’ll learn 5 high-percentage southpaw combos designed to:
+        In this guide, you’ll learn 5 high-success southpaw combos designed to:
       </p>
       <ul className="text-zinc-400 list-disc list-inside mb-10">
         <li>Disrupt rhythm</li>
