@@ -15,7 +15,7 @@ export default function Layout({ children }: LayoutProps) {
         <nav className="space-x-6 text-sm text-zinc-400">
           <Link href="/" className="hover:text-white">Home</Link>
           <Link href="/guides" className="hover:text-white">Guides</Link>
-          <Link href="/blog" className="hover:text-white">Blog</Link>
+          {/*<Link href="/blog" className="hover:text-white">Blog</Link>*/}
           <Link href="/about" className="hover:text-white">About</Link>
         </nav>
       </header>

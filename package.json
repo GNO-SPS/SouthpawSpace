@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "dev": "next dev",
     "dev-clean": "npx kill-port 3000 && next dev",
     "build": "next build",
@@ -24,8 +25,11 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
-    "npm-force-resolutions": "^0.0.10",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "npm-force-resolutions": "^0.0.10"
+  },
+  "resolutions": {
+    "postcss": "8.4.21"
   }
 }
