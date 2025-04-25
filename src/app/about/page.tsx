@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import Layout from "@/components/Layout";
-import NewsletterSignup from "@/components/NewsletterSignup";
 
 export default function AboutPage() {
   return (
