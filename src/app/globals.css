@@ -1,5 +1,7 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+/* bring in v4 of Tailwind (base + components + utilities) */
+@import "tailwindcss";
+
+/* your custom CSS below… */
 
 :root {
   --background: #ffffff;
