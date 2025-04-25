@@ -1,9 +1,7 @@
-/** @type {import('postcss').Config} */
 // postcss.config.js
-export default {
+module.exports = {
   plugins: {
-    // you can remove postcss-import & autoprefixer entirely
-    // unless you really need them elsewhere
-    '@tailwindcss/postcss': {},
+    tailwindcss: {},
+    autoprefixer: {},
   },
 }
