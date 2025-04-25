@@ -1,10 +1,9 @@
 import PageTemplate from '@/components/PageTemplate'
-import Link from 'next/link'
 
 export default function AboutPage() {
   return (
     <PageTemplate title="About Southpaw Space">
-      <main className="max-w-3xl mx-auto py-16 px-4 prose lg:prose-xl">
+      <main className="max-w-3xl mx-auto py-16 px-4 prose lg:prose-xl space-y-8">
         <p>
           <strong>Southpaw Space</strong> was born out of one simple frustration: as a left-handed fighter, I found almost no high-quality, southpaw-specific training resources online. After years competing in boxing, kickboxing, and earning my black belt in karate, I realised that most tutorials, drills and combos are built for orthodox fighters—and recycled endless “mirrored” advice that never quite worked for me.
         </p>
@@ -21,7 +20,7 @@ export default function AboutPage() {
 
         <h2>Who’s Behind the Gloves</h2>
         <p>
-          I’m the founder of Southpaw Space—a dedicated mixed martial arts student who’s trained and competed across disciplines, from the boxing ring to the karate dojo and the kickboxing cage. Today, I also coach, helping fighters translate southpaw strategies into real-world results.
+          I’m a dedicated mixed martial arts student who’s trained and competed across disciplines—from the boxing ring to the karate dojo and the kickboxing cage. Today, I also coach, helping fighters translate southpaw strategies into real-world results.
         </p>
 
         <h2>Why Southpaw Space?</h2>
@@ -29,16 +28,6 @@ export default function AboutPage() {
           <li><strong>Southpaw-First Content:</strong> Every technique is designed around left-handed angles and counters.</li>
           <li><strong>Cross-Discipline Approach:</strong> Techniques and drills that work in boxing, kickboxing, MMA, and more.</li>
         </ul>
-
-        <h2>Join the Movement</h2>
-        <p>
-          Ready to level up your southpaw game (or finally understand how to beat one)?
-        </p>
-        <Link href="/subscribe">
-          <a className="inline-block bg-blue-600 text-white font-semibold rounded-lg px-6 py-3 hover:bg-blue-700 transition">
-            Subscribe Now
-          </a>
-        </Link>
       </main>
     </PageTemplate>
   )
