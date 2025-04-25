@@ -23,11 +23,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
+    "npm-force-resolutions": "^0.0.10",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "npm-force-resolutions": "^0.0.10"
+    "typescript": "^5"
   },
   "resolutions": {
     "postcss": "8.4.21"
