@@ -1,4 +1,26 @@
+import type { Metadata } from 'next'
 import PageTemplate from '@/components/PageTemplate'
+
+export const metadata: Metadata = {
+  title: 'About Southpaw Space',
+  description: 'Learn about Southpaw Space, your hub for left-handed fighters with targeted drills, strategies, and gear reviews.',
+  openGraph: {
+    title: 'About Southpaw Space',
+    description: 'Learn about Southpaw Space, your hub for left-handed fighters with targeted drills, strategies, and gear reviews.',
+    url: 'https://southpaw-space.vercel.app/about',
+    siteName: 'Southpaw Space',
+    images: [
+      {
+        url: 'https://southpaw-space.vercel.app/og-image-about.png',
+        width: 1200,
+        height: 630,
+        alt: 'About Southpaw Space'
+      }
+    ],
+    locale: 'en_US',
+    type: 'website'
+  }
+}
 
 export default function AboutPage() {
   return (
@@ -9,7 +31,7 @@ export default function AboutPage() {
         </p>
 
         <p>
-          Through the generosity of a few southpaw coaches, I picked up techniques and insights I couldn’t find anywhere else. I knew there had to be more of us looking for targeted guidance. So, even as I continue my own journey as a student and budding coach, I created Southpaw Space to share everything I learn—so you don’t have to hunt for those hidden gems.
+          Through the generosity of a few southpaw coaches, I picked up techniques and insights I couldn’t find anywhere else. I knew there had to be more of us out there looking for targeted guidance. So, even as I continue my own journey as a student and budding coach, I created Southpaw Space to share everything I learn—so you don’t have to hunt for those hidden gems.
         </p>
 
         <h2 className="text-2xl font-semibold mt-12">Our Mission &amp; Vision</h2>
