@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://southpaw-space.vercel.app
+
+# Sitemaps
+Sitemap: https://southpaw-space.vercel.app/sitemap.xml
