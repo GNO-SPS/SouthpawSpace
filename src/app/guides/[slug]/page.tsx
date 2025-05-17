@@ -1,34 +1,54 @@
-// src/lib/guides-meta.ts
+// src/app/guides/[slug]/page.tsx
 
-// 1. Define the shape of each guide’s metadata
-export type GuideMeta = {
-  title: string;
-  description: string;
-  ogImage: string;
-};
+import { getGuideMeta } from "@/lib/guides-meta";
+import { Metadata } from "next";
+import PageTemplate from "@/components/PageTemplate";
 
-// 2. Central store of all guides’ metadata, keyed by slug
-export const guidesMeta: Record<string, GuideMeta> = {
-  "southpaw-footwork": {
-    title: "Southpaw Footwork 101",
-    description: "Master footwork to outmanoeuvre orthodox opponents.",
-    ogImage: "/og-image-southpaw-footwork.png",
-  },
-  "rear-hook-strategy": {
-    title: "Landing the Rear Hook as a Southpaw",
-    description: "Break down how to slip inside and land your best punch.",
-    ogImage: "/og-image-rear-hook-strategy.png",
-  },
-  // …add more as you create them
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const meta = getGuideMeta(params.slug);
 
-// 3. Getter function—returns the specific meta or a sensible default
-export function getGuideMeta(slug: string): GuideMeta {
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      images: [meta.ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+      images: [meta.ogImage],
+    },
+  };
+}
+
+export default function GuidePage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+  const meta = getGuideMeta(slug);
+
   return (
-    guidesMeta[slug] ?? {
-      title: "Southpaw Guide",
-      description: "A guide to help left-handed fighters dominate.",
-      ogImage: "/og-image-guides.png", // your fallback OG image
-    }
+    <PageTemplate>
+      <article className="prose max-w-none">
+        <h1>{meta.title}</h1>
+        <p className="text-lg text-gray-700">{meta.description}</p>
+        {/* TODO: Replace the following with your real guide content */}
+        <section className="mt-8">
+          <p>
+            This is where the full content for <strong>{meta.title}</strong> will go. 
+            Use MDX or JSX here to lay out drills, tactics, images, etc.
+          </p>
+        </section>
+      </article>
+    </PageTemplate>
   );
 }
