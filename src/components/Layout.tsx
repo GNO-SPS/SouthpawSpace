@@ -1,5 +1,8 @@
+// src/components/Layout.tsx
+
 import { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 type LayoutProps = {
   children: ReactNode;
@@ -9,9 +12,16 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <main className="min-h-screen bg-zinc-950 text-white font-sans">
       <header className="w-full border-b border-zinc-800 py-4 px-6 flex justify-between items-center">
-      <Link href="/" className="flex items-center">
-        <img src="/logo.png" alt="Southpaw Space Logo" className="h-16 w-[190px]" />
-      </Link>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Southpaw Space Logo"
+            width={190}        // your logo’s intrinsic width in pixels
+            height={64}        // your logo’s intrinsic height in pixels
+            priority           // preload this key LCP image
+            className="h-16 w-[190px]"
+          />
+        </Link>
         <nav className="space-x-6 text-sm text-zinc-400">
           <Link href="/" className="hover:text-white">Home</Link>
           <Link href="/guides" className="hover:text-white">Guides</Link>
