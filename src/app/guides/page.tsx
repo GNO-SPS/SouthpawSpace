@@ -8,6 +8,7 @@ export default function GuidesPage() {
     <PageTemplate
       title="Southpaw Guides"
       intro="In-depth tactical guides to help southpaw fighters improve their skills and strategy."
+      showNewsletter={false}  // ← Disabled newsletter here
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <Link
