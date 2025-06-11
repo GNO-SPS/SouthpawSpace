@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <PageTemplate title="About Southpaw Space">
+    <PageTemplate title="About Southpaw Space" showNewsletter={false}>
       <main className="prose lg:prose-xl space-y-8">
         <p>
           <strong>Southpaw Space</strong> was born out of one simple frustration: as a left-handed fighter, I found almost no high-quality, southpaw-specific training resources online. After years competing in boxing, kickboxing, and earning my black belt in karate, I realised that most tutorials, drills and combos are built for orthodox fighters—and recycled endless “mirrored” advice that never quite worked for me.
