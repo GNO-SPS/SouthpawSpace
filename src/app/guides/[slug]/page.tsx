@@ -37,7 +37,7 @@ export default function GuidePage({
   const meta = getGuideMeta(slug);
 
   return (
-    <PageTemplate showNewsletter={false}>
+    <PageTemplate>
       <article className="prose max-w-none">
         <h1>{meta.title}</h1>
         <p className="text-lg text-gray-700">{meta.description}</p>
