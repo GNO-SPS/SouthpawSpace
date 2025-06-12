@@ -1,14 +1,8 @@
 // src/components/PageTemplate.tsx
 
 import Layout from "@/components/Layout";
-import dynamic from "next/dynamic";
 import { ReactNode } from "react";
-
-// Dynamically load the newsletter component on the client only
-const NewsletterSignup = dynamic(
-  () => import("@/components/NewsletterSignup"),
-  { ssr: false }
-);
+import NewsletterForm from "@/components/NewsletterForm";
 
 type PageTemplateProps = {
   title?: string;
@@ -40,7 +34,7 @@ export default function PageTemplate({
 
         {showNewsletter && (
           <div className="mt-16 flex justify-center">
-            <NewsletterSignup />
+            <NewsletterForm />
           </div>
         )}
       </section>
