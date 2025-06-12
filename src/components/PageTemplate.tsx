@@ -33,7 +33,7 @@ export default function PageTemplate({
         {children}
 
         {showNewsletter && (
-          <div className="mt-16 flex justify-center">
+          <div className="mt-16 flex justify-center portrait-scale">
             <NewsletterForm />
           </div>
         )}

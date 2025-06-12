@@ -20,3 +20,11 @@ body {
   color: var(--foreground);
   font-family: theme('fontFamily.sans');
 }
+
+/* ↓ portrait‐orientation form scaling ↓ */
+@media (orientation: portrait) {
+  .portrait-scale {
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+}
