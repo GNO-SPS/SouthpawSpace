@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "preinstall": "npx npm-force-resolutions",
-  "dev": "next dev",
-  "dev-clean": "npx kill-port 3000 && next dev",
-  "build": "next build",
-  "postbuild": "next-sitemap",
-  "start": "next start",
-  "lint": "next lint"
-},
+    "dev": "next dev",
+    "dev-clean": "npx kill-port 3000 && next dev",
+    "build": "next build",
+    "postbuild": "next-sitemap",
+    "start": "next start",
+    "lint": "next lint"
+  },
+
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
     "lucide-react": "^0.488.0",
