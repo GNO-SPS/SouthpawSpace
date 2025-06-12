@@ -4,23 +4,23 @@
 import { useEffect, useRef } from "react";
 
 export default function NewsletterForm() {
-  const uid = "4482a7b1c7";
+  const uid = "f126e7063a"; // only once
   const scriptUrl = `https://southpaw-space.kit.com/${uid}/index.js`;
-  const ref = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = ref.current;
+    const container = containerRef.current;
     if (!container) return;
 
-    const script = document.createElement("script");
-    script.src = scriptUrl;
-    script.async = true;
-    script.setAttribute("data-uid", uid);
-    container.appendChild(script);
+    const kitScript = document.createElement("script");
+    kitScript.src = scriptUrl;
+    kitScript.async = true;
+    kitScript.setAttribute("data-uid", uid);
+    container.appendChild(kitScript);
 
     return () => {
-      if (container.contains(script)) {
-        container.removeChild(script);
+      if (container.contains(kitScript)) {
+        container.removeChild(kitScript);
       }
       container.innerHTML = "";
     };
@@ -28,9 +28,10 @@ export default function NewsletterForm() {
 
   return (
     <div
-      ref={ref}
+      ref={containerRef}
       data-uid={uid}
       className="w-full max-w-xl mx-auto my-10 px-4"
     />
   );
 }
+
