@@ -2,7 +2,6 @@
 
 import { getGuideMeta } from "@/lib/guides-meta";
 import { Metadata } from "next";
-import PageTemplate from "@/components/PageTemplate";
 
 export async function generateMetadata({
   params,
@@ -37,18 +36,16 @@ export default function GuidePage({
   const meta = getGuideMeta(slug);
 
   return (
-    <PageTemplate>
-      <article className="prose max-w-none">
-        <h1>{meta.title}</h1>
-        <p className="text-lg text-gray-700">{meta.description}</p>
-        {/* TODO: Replace the following with your real guide content */}
-        <section className="mt-8">
-          <p>
-            This is where the full content for <strong>{meta.title}</strong> will go. 
-            Use MDX or JSX here to lay out drills, tactics, images, etc.
-          </p>
-        </section>
-      </article>
-    </PageTemplate>
+    <article className="prose max-w-none">
+      <h1>{meta.title}</h1>
+      <p className="text-lg text-gray-700">{meta.description}</p>
+      {/* TODO: Replace the following with your real guide content */}
+      <section className="mt-8">
+        <p>
+          This is where the full content for <strong>{meta.title}</strong> will go. 
+          Use MDX or JSX here to lay out drills, tactics, images, etc.
+        </p>
+      </section>
+    </article>
   );
 }
