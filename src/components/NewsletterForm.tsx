@@ -4,11 +4,9 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function NewsletterForm() {
-  // Your two Kit form UIDs
-  const DESKTOP_UID = "f126e7063a";   // existing slide-in UID
-  const MOBILE_UID  = "76aaf8cbd0";   // your new mobile UID
+  const DESKTOP_UID = "f126e7063a";
+  const MOBILE_UID  = "76aaf8cbd0";
 
-  // Determine which to use based on screen width
   const [uid, setUid] = useState(() =>
     typeof window !== "undefined" && window.innerWidth <= 640
       ? MOBILE_UID
@@ -16,8 +14,9 @@ export default function NewsletterForm() {
   );
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const injectedRef = useRef(false);  // ← tracks injection
 
-  // Update UID on resize
+  // Update UID on resize, but don’t retrigger injection
   useEffect(() => {
     const onResize = () => {
       const isMobile = window.innerWidth <= 640;
@@ -27,22 +26,26 @@ export default function NewsletterForm() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Inject the correct Kit script whenever UID changes
+  // Inject the kit script only once
   useEffect(() => {
+    if (injectedRef.current) return;    // ← skip if already injected
     const container = containerRef.current;
     if (!container) return;
 
-    // Clear any previous embed
-    container.innerHTML = "";
-
+    // inject
     const script = document.createElement("script");
     script.src = `https://southpaw-space.kit.com/${uid}/index.js`;
     script.async = true;
     script.setAttribute("data-uid", uid);
     container.appendChild(script);
 
+    injectedRef.current = true;         // ← mark as injected
+
+    // optional cleanup on full unmount
     return () => {
-      if (container.contains(script)) container.removeChild(script);
+      if (container.contains(script)) {
+        container.removeChild(script);
+      }
       container.innerHTML = "";
     };
   }, [uid]);
