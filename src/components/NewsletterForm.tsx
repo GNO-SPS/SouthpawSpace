@@ -14,7 +14,7 @@ export default function NewsletterForm() {
   );
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const injectedRef = useRef(false);  // ← tracks injection
+  const injectedRef = useRef(false);
 
   // Update UID on resize, but don’t retrigger injection
   useEffect(() => {
@@ -26,22 +26,20 @@ export default function NewsletterForm() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Inject the kit script only once
+  // Inject the Kit script only once
   useEffect(() => {
-    if (injectedRef.current) return;    // ← skip if already injected
+    if (injectedRef.current) return;
     const container = containerRef.current;
     if (!container) return;
 
-    // inject
     const script = document.createElement("script");
     script.src = `https://southpaw-space.kit.com/${uid}/index.js`;
     script.async = true;
     script.setAttribute("data-uid", uid);
     container.appendChild(script);
 
-    injectedRef.current = true;         // ← mark as injected
+    injectedRef.current = true;
 
-    // optional cleanup on full unmount
     return () => {
       if (container.contains(script)) {
         container.removeChild(script);
