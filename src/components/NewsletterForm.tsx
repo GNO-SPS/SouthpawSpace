@@ -14,7 +14,6 @@ export default function NewsletterForm() {
   );
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const injectedRef = useRef(false);
 
   // Update UID on resize, but don’t retrigger injection
   useEffect(() => {
@@ -28,25 +27,29 @@ export default function NewsletterForm() {
 
   // Inject the Kit script only once
   useEffect(() => {
-    if (injectedRef.current) return;
     const container = containerRef.current;
     if (!container) return;
 
+    // Determine initial UID based on window width
+    const initialUid =
+      typeof window !== "undefined" && window.innerWidth <= 640
+        ? MOBILE_UID
+        : DESKTOP_UID;
+
     const script = document.createElement("script");
-    script.src = `https://southpaw-space.kit.com/${uid}/index.js`;
+    script.src = `https://southpaw-space.kit.com/${initialUid}/index.js`;
     script.async = true;
-    script.setAttribute("data-uid", uid);
+    script.setAttribute("data-uid", initialUid); // It's good practice to set the data-uid on script too
     container.appendChild(script);
 
-    injectedRef.current = true;
-
     return () => {
+      // Cleanup the script when the component unmounts
       if (container.contains(script)) {
         container.removeChild(script);
       }
-      container.innerHTML = "";
+      // No need to clear innerHTML if we only remove the script
     };
-  }, [uid]);
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
     <div
