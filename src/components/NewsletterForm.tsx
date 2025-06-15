@@ -1,11 +1,10 @@
-// src/components/NewsletterForm.tsx
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function NewsletterForm() {
   const DESKTOP_UID = "f126e7063a";
-  const MOBILE_UID  = "76aaf8cbd0";
+  const MOBILE_UID = "76aaf8cbd0";
 
   const [uid, setUid] = useState(() =>
     typeof window !== "undefined" && window.innerWidth <= 640
@@ -13,49 +12,38 @@ export default function NewsletterForm() {
       : DESKTOP_UID
   );
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Update UID on resize, but don’t retrigger injection
   useEffect(() => {
-    const onResize = () => {
-      const isMobile = window.innerWidth <= 640;
-      setUid(isMobile ? MOBILE_UID : DESKTOP_UID);
+    const handleResize = () => {
+      const newUid = window.innerWidth <= 640 ? MOBILE_UID : DESKTOP_UID;
+      setUid(newUid);
     };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Inject the Kit script only once
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    // Prevent duplicate injection
+    if (document.querySelector(`script[data-uid="${uid}"]`)) return;
 
-    // Determine initial UID based on window width
-    const initialUid =
-      typeof window !== "undefined" && window.innerWidth <= 640
-        ? MOBILE_UID
-        : DESKTOP_UID;
+    console.log("Injecting ConvertKit form for UID:", uid);
 
     const script = document.createElement("script");
-    script.src = `https://southpaw-space.kit.com/${initialUid}/index.js`;
+    script.src = "https://f.convertkit.com/kit.js";
     script.async = true;
-    script.setAttribute("data-uid", initialUid); // It's good practice to set the data-uid on script too
-    container.appendChild(script);
+    script.setAttribute("data-uid", uid);
+    script.setAttribute("data-kit-injected", "true");
+
+    document.body.appendChild(script);
 
     return () => {
-      // Cleanup the script when the component unmounts
-      if (container.contains(script)) {
-        container.removeChild(script);
-      }
-      // No need to clear innerHTML if we only remove the script
+      document.body.removeChild(script);
     };
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, [uid]);
 
-  return (
-    <div
-      ref={containerRef}
-      data-uid={uid}
-      className="w-full max-w-xl mx-auto my-10 px-4"
-    />
-  );
+return (
+  <div className="w-full max-w-xl mx-auto my-10 px-4" data-uid={uid}>
+    <div id={`ck-form-container-${uid}`} />
+  </div>
+);
+
 }
