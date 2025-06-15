@@ -1,4 +1,5 @@
-import { ReactNode, useEffect } from "react"
+// src/components/Layout.tsx
+import { ReactNode } from "react";
 import Link from "next/link"
 import Image from "next/image"
 
@@ -7,12 +8,6 @@ type LayoutProps = {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  useEffect(() => {
-    const script = document.createElement("script")
-    script.src = "https://f.convertkit.com/ckjs/ck.5.js"
-    script.async = true
-    document.body.appendChild(script)
-  }, [])
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white font-sans">
