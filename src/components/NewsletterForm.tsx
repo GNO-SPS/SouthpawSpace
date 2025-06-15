@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function NewsletterForm() {
   const DESKTOP_UID = "f126e7063a";
@@ -12,6 +12,8 @@ export default function NewsletterForm() {
       : DESKTOP_UID
   );
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleResize = () => {
       const newUid = window.innerWidth <= 640 ? MOBILE_UID : DESKTOP_UID;
@@ -22,28 +24,34 @@ export default function NewsletterForm() {
   }, []);
 
   useEffect(() => {
-    // Prevent duplicate injection
+    const container = containerRef.current;
+    if (!container) return;
+
     if (document.querySelector(`script[data-uid="${uid}"]`)) return;
 
-    console.log("Injecting ConvertKit form for UID:", uid);
+    const existingScripts = container.querySelectorAll('script[src*="kit.com"]');
+    existingScripts.forEach((s) => container.removeChild(s));
 
     const script = document.createElement("script");
-    script.src = "https://f.convertkit.com/kit.js";
+    script.src = `https://southpaw-space.kit.com/${uid}/index.js`;
     script.async = true;
     script.setAttribute("data-uid", uid);
-    script.setAttribute("data-kit-injected", "true");
-
-    document.body.appendChild(script);
+    container.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      if (container.contains(script)) {
+        container.removeChild(script);
+      }
     };
   }, [uid]);
 
-return (
-  <div className="w-full max-w-xl mx-auto my-10 px-4" data-uid={uid}>
-    <div id={`ck-form-container-${uid}`} />
-  </div>
-);
-
+  return (
+    <div
+      ref={containerRef}
+      data-uid={uid}
+      className="w-full max-w-xl mx-auto my-10 px-4"
+    >
+      <div id={`ck-form-container-${uid}`} />
+    </div>
+  );
 }
