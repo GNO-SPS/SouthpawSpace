@@ -8,10 +8,11 @@ export default function StickyNewsletterBar() {
   const uid = "26f236d1f6";
 
   useEffect(() => {
-    const scriptId = `kit-script-${uid}`;
-    const existingScript = document.getElementById(scriptId);
+    // Inject only on /about
+    if (pathname !== "/about") return;
 
-    if (!existingScript) {
+    const scriptId = `kit-script-${uid}`;
+    if (!document.getElementById(scriptId)) {
       const script = document.createElement("script");
       script.src = `https://southpaw-space.kit.com/${uid}/index.js`;
       script.async = true;
@@ -21,12 +22,12 @@ export default function StickyNewsletterBar() {
     }
 
     return () => {
+      // Remove Kit UI and script
       document.querySelectorAll(`[data-kit-widget-id^="${uid}"]`).forEach((el) => el.remove());
-      const injectedScript = document.getElementById(scriptId);
-      if (injectedScript) injectedScript.remove();
+      const existingScript = document.getElementById(scriptId);
+      if (existingScript) existingScript.remove();
     };
   }, [pathname]);
 
   return null;
 }
-
