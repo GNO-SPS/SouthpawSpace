@@ -1,39 +1,41 @@
-//src/app/about/page.tsx
-
 import type { Metadata } from 'next'
 import PageTemplate from '@/components/PageTemplate'
 import StickyNewsletterBar from '@/components/StickyNewsletterBar'
 
 export const metadata: Metadata = {
-  title: 'About Southpaw Space',
-  description: 'Learn about Southpaw Space, your hub for left-handed fighters with targeted drills, strategies, and gear reviews.',
-  openGraph: {
-    title: 'About Southpaw Space',
-    description: 'Learn about Southpaw Space, your hub for left-handed fighters with targeted drills, strategies, and gear reviews.',
-    url: 'https://southpaw-space.vercel.app/about',
-    siteName: 'Southpaw Space',
-    images: [
-      {
-        url: 'https://southpaw-space.vercel.app/og-image-about.png',
-        width: 1200,
-        height: 630,
-        alt: 'About Southpaw Space'
-      }
-    ],
-    locale: 'en_US',
-    type: 'website'
-  }
+  // ... unchanged
 }
 
 export default function AboutPage() {
   return (
     <>
       <StickyNewsletterBar />
-      <PageTemplate title="About Southpaw Space" showNewsletter={false}>
-        <main className="prose lg:prose-xl space-y-8">
-          {/* your content unchanged */}
-        </main>
-      </PageTemplate>
+      <main className="prose lg:prose-xl space-y-8">
+        <PageTemplate title="About Southpaw Space" showNewsletter={false}>
+          <p>
+            <strong>Southpaw Space</strong> was born out of one simple frustration...
+          </p>
+
+          <p>
+            Through the generosity of a few southpaw coaches...
+          </p>
+
+          <h2 className="text-2xl font-semibold mt-12">Our Mission &amp; Vision</h2>
+          <ul>
+            <li><strong>Mission:</strong> Empower fighters...</li>
+            <li><strong>Vision:</strong> Build a hub...</li>
+          </ul>
+
+          <h2 className="text-2xl font-semibold mt-12">Who’s Behind the Gloves</h2>
+          <p>I’m a dedicated mixed martial arts student...</p>
+
+          <h2 className="text-2xl font-semibold mt-12">Why Southpaw Space?</h2>
+          <ul>
+            <li><strong>Southpaw-First Content:</strong> Every technique...</li>
+            <li><strong>Cross-Discipline Approach:</strong> Techniques and drills...</li>
+          </ul>
+        </PageTemplate>
+      </main>
     </>
   )
 }
