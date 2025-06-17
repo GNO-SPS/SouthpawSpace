@@ -10,7 +10,7 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
-  const pathname = usePathname();
+ 
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white font-sans">
