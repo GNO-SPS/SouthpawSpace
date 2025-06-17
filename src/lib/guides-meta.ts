@@ -32,3 +32,11 @@ export function getGuideMeta(slug: string): GuideMeta {
     }
   );
 }
+
+// 4. NEW: Get all guide metadata as an array
+export function getAllGuideMeta(): Array<{ slug: string } & GuideMeta> {
+  return Object.entries(guidesMeta).map(([slug, meta]) => ({
+    slug,
+    ...meta,
+  }));
+}
