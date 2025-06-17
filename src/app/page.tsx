@@ -1,3 +1,5 @@
+//src/app/page.tsx
+
 import PageTemplate from "@/components/PageTemplate";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
