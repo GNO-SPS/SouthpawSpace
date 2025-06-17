@@ -2,7 +2,7 @@
 
 import Layout from "@/components/Layout";
 import { ReactNode } from "react";
-import NewsletterEmbed from "@/components/NewsletterEmbed"; 
+import NewsletterSlideIn from "@/components/NewsletterSlideIn";
 
 type PageTemplateProps = {
   title?: string;
@@ -33,11 +33,8 @@ export default function PageTemplate({
         {children}
 
         {showNewsletter && (
-  <div className="mt-16 flex justify-center portrait-scale">
-    <NewsletterEmbed />
-  </div>
-)}
-
+          <NewsletterSlideIn />
+        )}
       </section>
     </Layout>
   );
