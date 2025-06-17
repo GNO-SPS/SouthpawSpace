@@ -1,25 +1,32 @@
 "use client";
 
 import { useEffect } from "react";
-
-let hasLoadedScript = false;
+import { usePathname } from "next/navigation";
 
 export default function NewsletterSlideIn() {
+  const pathname = usePathname();
+  const uid = "76aaf8cbd0";
+
   useEffect(() => {
-    if (hasLoadedScript || document.querySelector(`script[data-uid="76aaf8cbd0"]`)) return;
+    const scriptId = `kit-script-${uid}`;
+    const existingScript = document.getElementById(scriptId);
 
-    const script = document.createElement("script");
-    script.src = "https://southpaw-space.kit.com/76aaf8cbd0/index.js";
-    script.async = true;
-    script.setAttribute("data-uid", "76aaf8cbd0");
-    document.body.appendChild(script);
-
-    hasLoadedScript = true;
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.src = `https://southpaw-space.kit.com/${uid}/index.js`;
+      script.async = true;
+      script.setAttribute("data-uid", uid);
+      script.id = scriptId;
+      document.body.appendChild(script);
+    }
 
     return () => {
-      // Do not remove the script on unmount — let it persist across pages
+      document.querySelectorAll(`[data-kit-widget-id^="${uid}"]`).forEach((el) => el.remove());
+      const injectedScript = document.getElementById(scriptId);
+      if (injectedScript) injectedScript.remove();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
+

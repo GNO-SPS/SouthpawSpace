@@ -11,7 +11,6 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   const pathname = usePathname();
-  const isMenuPage = pathname === "/" || pathname === "/about";
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white font-sans">
@@ -40,15 +39,6 @@ export default function Layout({ children }: LayoutProps) {
       <footer className="text-center text-sm text-zinc-600 border-t border-zinc-800 py-6 mt-20">
         © {new Date().getFullYear()} Southpaw Space. Built for southpaws, by a southpaw.
       </footer>
-
-      {/* Only load sticky bar script on Home & About pages */}
-      {isMenuPage && (
-        <script
-          async
-          data-uid="26f236d1f6"
-          src="https://southpaw-space.kit.com/26f236d1f6/index.js"
-        ></script>
-      )}
     </main>
   );
 }
