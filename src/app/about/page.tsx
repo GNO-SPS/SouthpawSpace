@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import PageTemplate from '@/components/PageTemplate'
-import StickyNewsletterBar from '@/components/StickyNewsletterBar'
+// import StickyNewsletterBar from '@/components/StickyNewsletterBar' // 🔕 Disabled for now — see note below
 
 export const metadata: Metadata = {
   // ... unchanged
@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <StickyNewsletterBar />
+      {/* 🔕 StickyNewsletterBar temporarily disabled
+          The slide-in form on guide pages currently covers newsletter collection.
+          You can re-enable <StickyNewsletterBar /> here later if needed. */}
+
       <main className="prose lg:prose-xl space-y-8">
         <PageTemplate title="About Southpaw Space" showNewsletter={false}>
           <p>
