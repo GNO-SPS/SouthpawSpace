@@ -1,4 +1,4 @@
-// src/components/Layout.tsx
+"use client";
 
 import { ReactNode } from "react";
 import Link from "next/link";
@@ -9,6 +9,8 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
+ 
+
   return (
     <main className="min-h-screen bg-zinc-950 text-white font-sans">
       <header className="w-full border-b border-zinc-800 py-4 px-6 flex justify-between items-center">
@@ -16,16 +18,15 @@ export default function Layout({ children }: LayoutProps) {
           <Image
             src="/logo.png"
             alt="Southpaw Space Logo"
-            width={190}        // your logo’s intrinsic width in pixels
-            height={64}        // your logo’s intrinsic height in pixels
-            priority           // preload this key LCP image
+            width={190}
+            height={64}
+            priority
             className="h-16 w-[190px]"
           />
         </Link>
         <nav className="space-x-6 text-sm text-zinc-400">
           <Link href="/" className="hover:text-white">Home</Link>
           <Link href="/guides" className="hover:text-white">Guides</Link>
-          {/*<Link href="/blog" className="hover:text-white">Blog</Link>*/}
           <Link href="/about" className="hover:text-white">About</Link>
         </nav>
       </header>

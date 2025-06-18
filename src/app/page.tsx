@@ -7,6 +7,7 @@ export default function Home() {
     <PageTemplate
       title="Built for Southpaws"
       intro="Strategy breakdowns, drills, gear reviews, and tactical guides designed for left-handed warriors."
+      showNewsletter={false}
     >
       <div className="mb-16">
         <h3 className="text-2xl font-semibold mb-4">Featured Guides</h3>
