@@ -1,33 +1,42 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export default function NewsletterSlideIn() {
   const pathname = usePathname();
   const uid = "76aaf8cbd0";
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Inject only on guide pages
     if (!pathname.startsWith("/guides")) return;
 
     const scriptId = `kit-script-${uid}`;
-    if (!document.getElementById(scriptId)) {
+
+    // Remove existing form (in case of re-navigation)
+    document.querySelectorAll(`[data-kit-widget-id^="${uid}"]`).forEach((el) => el.remove());
+    const existingScript = document.getElementById(scriptId);
+    if (existingScript) existingScript.remove();
+
+    // Inject into the containerRef
+    if (containerRef.current && !document.getElementById(scriptId)) {
       const script = document.createElement("script");
       script.src = `https://southpaw-space.kit.com/${uid}/index.js`;
       script.async = true;
       script.setAttribute("data-uid", uid);
       script.id = scriptId;
-      document.body.appendChild(script);
+
+      containerRef.current.appendChild(script);
     }
 
     return () => {
-      // Remove Kit UI and script
       document.querySelectorAll(`[data-kit-widget-id^="${uid}"]`).forEach((el) => el.remove());
       const existingScript = document.getElementById(scriptId);
       if (existingScript) existingScript.remove();
     };
   }, [pathname]);
 
-  return null;
+  return (
+    <div className="fixed bottom-0 right-0 z-50 p-6 pt-24" ref={containerRef}></div>
+  );
 }
