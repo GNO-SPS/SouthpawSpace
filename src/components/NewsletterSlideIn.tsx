@@ -29,8 +29,14 @@ export default function NewsletterSlideIn() {
     };
   }, [pathname]);
 
-  // ✅ Outer wrapper adds padding to force form away from top
+  if (!pathname.startsWith("/guides")) return null;
+
   return (
-    <div ref={wrapperRef} className="pt-24 sm:pt-32 md:pt-40" />
+    <div className="fixed top-[5vh] left-0 right-0 z-50 flex justify-center px-4">
+      <div
+        ref={wrapperRef}
+        className="min-w-[480px] max-w-[95vw] max-h-[90vh] overflow-y-auto"
+      />
+    </div>
   );
 }
