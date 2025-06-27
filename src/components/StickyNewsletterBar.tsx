@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 export default function StickyNewsletterBar() {
   const pathname = usePathname();
-  const uid = process.env.NEXT_PUBLIC_STICKY_UID;
+  const uid = process.env.NEXT_PUBLIC_STICKY_UID || "26f236d1f6";
 
   useEffect(() => {
     // Inject only on /about
