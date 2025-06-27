@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   typescript: {
     // WARNING: this will allow your build to pass even if there are TS errors.
     // Use it only as a temporary unblock.
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
 };
 

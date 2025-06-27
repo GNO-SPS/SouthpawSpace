@@ -1,5 +1,3 @@
-// src/app/guides/[slug]/page.tsx
-
 import PageTemplate from "@/components/PageTemplate";
 import { getGuideMeta } from "@/lib/guides-meta";
 import { Metadata } from "next";
@@ -7,9 +5,10 @@ import { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const meta = getGuideMeta(params.slug);
+  const { slug } = await params;
+  const meta = getGuideMeta(slug);
 
   return {
     title: meta.title,
@@ -28,12 +27,12 @@ export async function generateMetadata({
   };
 }
 
-export default function GuidePage({
+export default async function GuidePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const meta = getGuideMeta(slug);
 
   return (

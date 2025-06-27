@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 
 export default function StickyNewsletterBar() {
   const pathname = usePathname();
-  const uid = "26f236d1f6";
+  const uid = process.env.NEXT_PUBLIC_STICKY_UID;
 
   useEffect(() => {
     // Inject only on /about
-    if (pathname !== "/about") return;
+    if (pathname !== "/about" || !uid) return;
 
     const scriptId = `kit-script-${uid}`;
     if (!document.getElementById(scriptId)) {
@@ -27,7 +27,7 @@ export default function StickyNewsletterBar() {
       const existingScript = document.getElementById(scriptId);
       if (existingScript) existingScript.remove();
     };
-  }, [pathname]);
+  }, [pathname, uid]);
 
   return null;
 }

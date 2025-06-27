@@ -5,11 +5,11 @@ import { usePathname } from "next/navigation";
 
 export default function NewsletterSlideIn() {
   const pathname = usePathname();
-  const uid = "76aaf8cbd0";
+  const uid = process.env.NEXT_PUBLIC_SLIDEIN_UID;
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!pathname.startsWith("/guides")) return;
+    if (!pathname.startsWith("/guides") || !uid) return;
 
     const scriptId = `kit-script-${uid}`;
     if (!document.getElementById(scriptId)) {
@@ -27,9 +27,9 @@ export default function NewsletterSlideIn() {
       const existingScript = document.getElementById(scriptId);
       if (existingScript) existingScript.remove();
     };
-  }, [pathname]);
+  }, [pathname, uid]);
 
-  if (!pathname.startsWith("/guides")) return null;
+  if (!pathname.startsWith("/guides") || !uid) return null;
 
   return (
     <div className="fixed top-[5vh] left-0 right-0 z-50 flex justify-center px-4">
